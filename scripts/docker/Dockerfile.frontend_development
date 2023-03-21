@@ -10,7 +10,9 @@ RUN git clone --depth=1 git://github.com/hotosm/tasking-manager.git \
 
 RUN rm -rf backend/ migrations/
 
-FROM tiangolo/node-frontend:10 as build
+FROM node:18 as build
+
+USER nodejs
 
 WORKDIR /usr/src/app
 
@@ -18,6 +20,7 @@ COPY --from=base /usr/src/app/frontend /usr/src/app
 
 ## SETUP
 RUN npm install
+
 
 ARG TM_APP_API_URL=http://localhost/api
 ARG TM_IMPORT_MAX_FILESIZE=1000000

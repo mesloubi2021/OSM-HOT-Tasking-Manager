@@ -1,4 +1,8 @@
-FROM tiangolo/node-frontend:10 as build
+# Just for the nginx conf
+FROM tiangolo/node-frontend:10 AS build
+
+# For the actual build
+FROM node:18 AS frontend_build
 
 WORKDIR /usr/src/app/frontend
 COPY frontend .
@@ -11,7 +15,7 @@ COPY tasking-manager.env ..
 RUN npm run build
 
 FROM nginx:stable-alpine
-COPY --from=build /usr/src/app/frontend/build /usr/share/nginx/html
+COPY --from=frontend_build /usr/src/app/frontend/build /usr/share/nginx/html
 COPY --from=build /nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 

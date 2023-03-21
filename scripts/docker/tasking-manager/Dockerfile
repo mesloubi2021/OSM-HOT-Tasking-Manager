@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 # INSTALLATION
 
 # Add repository for node
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN curl --fail --silent --show-error --location https://deb.nodesource.com/setup_18.x | bash -
 
 # Install dependencies
 RUN apt-get update \
