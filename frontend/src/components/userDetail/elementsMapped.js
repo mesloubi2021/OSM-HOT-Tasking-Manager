@@ -1,6 +1,6 @@
 import React from 'react';
 import humanizeDuration from 'humanize-duration';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';

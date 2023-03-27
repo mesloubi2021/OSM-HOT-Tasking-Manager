@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import WebFont from 'webfontloader';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
+import 'react-tooltip/dist/react-tooltip.css'; // Needed by for { Tooltip } from 'react-tooltip' to work properly
 
 import App from './App';
 import { store, persistor } from './store';

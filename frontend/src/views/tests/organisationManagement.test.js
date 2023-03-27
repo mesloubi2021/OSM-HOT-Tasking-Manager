@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import React from 'react';
-import { screen, fireEvent, waitFor, within } from '@testing-library/react';
-import { act } from '@testing-library/react-hooks';
+import { act, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {

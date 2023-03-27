@@ -11,7 +11,7 @@ import {
   useQueryParams,
   withDefault,
 } from 'use-query-params';
-import { stringify } from 'query-string';
+import queryString from 'query-string';
 
 import messages from './messages';
 import { useFetch } from '../hooks/UseFetch';
@@ -75,7 +75,7 @@ export function ListTeams({ managementView = false }: Object) {
   );
 
   const pageParam = `${
-    stringify(encodedQuery) ? `&${stringify(encodedQuery)}` : stringify(encodedQuery)
+    queryString.stringify(encodedQuery) ? `&${queryString.stringify(encodedQuery)}` : queryString.stringify(encodedQuery)
   }`;
 
   useEffect(() => {

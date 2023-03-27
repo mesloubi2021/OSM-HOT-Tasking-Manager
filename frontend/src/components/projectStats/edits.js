@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import projectMessages from './messages';

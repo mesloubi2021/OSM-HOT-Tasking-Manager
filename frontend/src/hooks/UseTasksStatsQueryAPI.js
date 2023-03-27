@@ -1,7 +1,7 @@
 import { useEffect, useReducer } from 'react';
 import { useSelector } from 'react-redux';
 import { useQueryParams, encodeQueryParams, StringParam, NumberParam } from 'use-query-params';
-import { stringify as stringifyUQP } from 'query-string';
+import queryString from 'query-string';
 import axios from 'axios';
 
 import { CommaArrayParam } from '../utils/CommaArrayParam';
@@ -176,5 +176,5 @@ export const useTasksStatsQueryAPI = (
 
 export const stringify = (obj) => {
   const encodedQuery = encodeQueryParams(statsQueryAllSpecification, obj);
-  return stringifyUQP(encodedQuery);
+  return queryString.stringify(encodedQuery);
 };
