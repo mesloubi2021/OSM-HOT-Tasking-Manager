@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import mapboxgl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
 
 import WebglUnsupported from '../webglUnsupported';

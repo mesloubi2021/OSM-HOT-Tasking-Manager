@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ReactPlaceholder from 'react-placeholder';
 import centroid from '@turf/centroid';
 import { FormattedMessage } from 'react-intl';
-import { supported } from 'mapbox-gl';
+import { supported } from 'maplibre-gl';
 
 import messages from './messages';
 import { UserAvatar, UserAvatarList } from '../user/avatar';

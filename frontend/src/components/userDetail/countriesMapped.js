@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl from 'maplibre-gl';
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
 import { FormattedMessage } from 'react-intl';
 

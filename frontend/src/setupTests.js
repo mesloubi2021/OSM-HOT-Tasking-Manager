@@ -2,7 +2,7 @@ import 'jest-canvas-mock';
 import { server } from './network/tests/server.js';
 
 // Used from https://github.com/mapbox/mapbox-gl-js/issues/3436#issuecomment-485535598
-jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
+jest.mock('maplibre-gl/dist/maplibre-gl', () => ({
   GeolocateControl: jest.fn(),
   Map: jest.fn(() => ({
     addControl: jest.fn(),
