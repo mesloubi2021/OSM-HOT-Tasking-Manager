@@ -4,9 +4,6 @@
   "license": "BSD-2-Clause",
   "private": false,
   "dependencies": {
-    "@formatjs/intl-locale": "^3.1.1",
-    "@formatjs/intl-pluralrules": "^5.1.10",
-    "@formatjs/intl-relativetimeformat": "^11.1.10",
     "@hotosm/id": "^2.21.1",
     "@hotosm/iso-countries-languages": "^1.1.2",
     "@lokibai/react-use-copy-clipboard": "^1.0.5",
