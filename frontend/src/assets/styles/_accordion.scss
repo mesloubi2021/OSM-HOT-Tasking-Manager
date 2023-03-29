@@ -13,21 +13,21 @@
 
 .accordion_button[aria-expanded='true']::before,
 .accordion_button[aria-selected='true']::before {
-    transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 [hidden] {
   display: none;
 }
 .accordion_panel {
-    animation: fadein 0.35s ease-in;
+  animation: fadein 0.35s ease-in;
 }
 
 @keyframes fadein {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }

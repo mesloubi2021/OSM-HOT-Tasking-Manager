@@ -75,7 +75,9 @@ export function ListTeams({ managementView = false }: Object) {
   );
 
   const pageParam = `${
-    queryString.stringify(encodedQuery) ? `&${queryString.stringify(encodedQuery)}` : queryString.stringify(encodedQuery)
+    queryString.stringify(encodedQuery)
+      ? `&${queryString.stringify(encodedQuery)}`
+      : queryString.stringify(encodedQuery)
   }`;
 
   useEffect(() => {
