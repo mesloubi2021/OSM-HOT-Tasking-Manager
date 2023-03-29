@@ -1,66 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 import { polyfill } from './polyfill';
 
-import ar from '../locales/ar.json';
-import cs from '../locales/cs.json';
-import de from '../locales/de.json';
-import el from '../locales/el.json';
-import en from '../locales/en.json';
-import es from '../locales/es.json';
-import fa_IR from '../locales/fa_IR.json';
-import fr from '../locales/fr.json';
-import he from '../locales/he.json';
-import hu from '../locales/hu.json';
-import id from '../locales/id.json';
-import it from '../locales/it.json';
-import ja from '../locales/ja.json';
-import ko from '../locales/ko.json';
-import mg from '../locales/mg.json';
-import ml from '../locales/ml.json';
-import nl_NL from '../locales/nl_NL.json';
-import pt from '../locales/pt.json';
-import pt_BR from '../locales/pt_BR.json';
-import ru from '../locales/ru.json';
-import sv from '../locales/sv.json';
-import sw from '../locales/sw.json';
-import tl from '../locales/tl.json';
-import tr from '../locales/tr.json';
-import uk from '../locales/uk.json';
-import zh_TW from '../locales/zh_TW.json';
-
 import { setLocale } from '../store/actions/userPreferences';
 import * as config from '../config';
-
-const translatedMessages = {
-  ar: ar,
-  cs: cs,
-  de: de,
-  el: el,
-  en: en,
-  es: es,
-  'fa-IR': fa_IR,
-  fr: fr,
-  he: he,
-  hu: hu,
-  id: id,
-  it: it,
-  ja: ja,
-  ko: ko,
-  mg: mg,
-  ml: ml,
-  nl: nl_NL,
-  pt: pt,
-  'pt-BR': pt_BR,
-  ru: ru,
-  sv: sv,
-  sw: sw,
-  tl: tl,
-  tr: tr,
-  uk: uk,
-  zh: zh_TW,
-};
 
 // commented values doesn't have a good amount of strings translated
 const supportedLocales = [
@@ -107,30 +51,91 @@ function getSupportedLocale(locale) {
   return { value: 'en', label: 'English' };
 }
 
-function getTranslatedMessages(locale) {
+async function getTranslatedMessages(locale) {
   let localeCode = getSupportedLocale(locale);
+  let val = localeCode;
   if (localeCode.hasOwnProperty('value')) {
-    return translatedMessages[localeCode.value];
+    val = localeCode.value;
   }
-  return translatedMessages[locale];
+  switch (val) {
+    case 'ar':
+      return await import(/* webpackChunkName: "lang-ar" */ '../locales/ar.json');
+    case 'cs':
+      return await import(/* webpackChunkName: "lang-cs" */ '../locales/cs.json');
+    case 'de':
+      return await import(/* webpackChunkName: "lang-de" */ '../locales/de.json');
+    case 'el':
+      return await import(/* webpackChunkName: "lang-el" */ '../locales/el.json');
+    case 'es':
+      return await import(/* webpackChunkName: "lang-es" */ '../locales/es.json');
+    case 'fa-IR':
+      return await import(/* webpackChunkName: "lang-fa_IR" */ '../locales/fa_IR.json');
+    case 'fr':
+      return await import(/* webpackChunkName: "lang-fr" */ '../locales/fr.json');
+    case 'he':
+      return await import(/* webpackChunkName: "lang-he" */ '../locales/he.json');
+    case 'hu':
+      return await import(/* webpackChunkName: "lang-hu" */ '../locales/hu.json');
+    case 'id':
+      return await import(/* webpackChunkName: "lang-id" */ '../locales/id.json');
+    case 'it':
+      return await import(/* webpackChunkName: "lang-it" */ '../locales/it.json');
+    case 'ja':
+      return await import(/* webpackChunkName: "lang-ja" */ '../locales/ja.json');
+    case 'ko':
+      return await import(/* webpackChunkName: "lang-ko" */ '../locales/ko.json');
+    case 'mg':
+      return await import(/* webpackChunkName: "lang-mg" */ '../locales/mg.json');
+    case 'ml':
+      return await import(/* webpackChunkName: "lang-ml" */ '../locales/ml.json');
+    case 'nl':
+      return await import(/* webpackChunkName: "lang-nl_NL" */ '../locales/nl_NL.json');
+    case 'pt':
+      return await import(/* webpackChunkName: "lang-pt" */ '../locales/pt.json');
+    case 'pt-BR':
+      return await import(/* webpackChunkName: "lang-pt_BR" */ '../locales/pt_BR.json');
+    case 'ru':
+      return await import(/* webpackChunkName: "lang-ru" */ '../locales/ru.json');
+    case 'sv':
+      return await import(/* webpackChunkName: "lang-sv" */ '../locales/sv.json');
+    case 'sw':
+      return await import(/* webpackChunkName: "lang-sw" */ '../locales/sw.json');
+    case 'tl':
+      return await import(/* webpackChunkName: "lang-tl" */ '../locales/tl.json');
+    case 'tr':
+      return await import(/* webpackChunkName: "lang-tr" */ '../locales/tr.json');
+    case 'uk':
+      return await import(/* webpackChunkName: "lang-uk" */ '../locales/uk.json');
+    case 'zh':
+      return await import(/* webpackChunkName: "lang-zh_TW" */ '../locales/zh_TW.json');
+    case 'en':
+    default:
+      return await import(/* webpackChunkName: "lang-en" */ '../locales/en.json');
+  }
 }
 
 /* textComponent is for orderBy <select>, see codesandbox at https://github.com/facebook/react/issues/15513 */
 let ConnectedIntl = (props) => {
+  const [i18nMessages, setI18nMessages] = useState(null);
+
   useEffect(() => {
     if (props.locale === null) {
       props.setLocale(getSupportedLocale(navigator.language).value);
     }
+    getTranslatedMessages(props.locale).then((messages) => setI18nMessages(messages));
   }, [props]);
 
   polyfill(props.locale ? props.locale.substr(0, 2) : config.DEFAULT_LOCALE);
 
+  if (i18nMessages === undefined || i18nMessages === null) {
+    return <div />;
+  }
   return (
     <IntlProvider
       key={props.locale || config.DEFAULT_LOCALE}
       locale={props.locale ? props.locale.substr(0, 2) : config.DEFAULT_LOCALE}
       textComponent={React.Fragment}
-      messages={getTranslatedMessages(props.locale)}
+      messages={i18nMessages}
     >
       {props.children}
     </IntlProvider>
