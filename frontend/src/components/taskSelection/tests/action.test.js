@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { screen, waitFor, within } from '@testing-library/react';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { getProjectSummary } from '../../../network/tests/mockData/projects';
@@ -83,7 +83,7 @@ describe('Session Expire Dialogs', () => {
 
   it('should display modal to notify user session about to expire', async () => {
     setup();
-    jest.advanceTimersByTime(6900000);
+    act(() => jest.advanceTimersByTime(6900000));
     const extendSessionDialog = screen.getByRole('dialog');
     expect(within(extendSessionDialog).getByRole('heading')).toHaveTextContent(
       messages.sessionAboutToExpireTitle.defaultMessage,
@@ -92,7 +92,7 @@ describe('Session Expire Dialogs', () => {
 
   it('should display modal to notify user session has ended', async () => {
     setup();
-    jest.advanceTimersByTime(7200000);
+    act(() => jest.advanceTimersByTime(7200000));
     const extendSessionDialog = screen.getByRole('dialog');
     expect(within(extendSessionDialog).getByRole('heading')).toHaveTextContent(
       messages.sessionExpiredTitle.defaultMessage,
