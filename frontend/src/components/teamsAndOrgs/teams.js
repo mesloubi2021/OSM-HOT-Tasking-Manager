@@ -205,9 +205,11 @@ export function TeamInformation(props) {
               width={12}
               height={12}
               className="blue-grey v-mid pb1 ml2"
-              data-tip={intl.formatMessage(messages[`${joinMethods[method]}Description`])}
+              data-tooltip-content={intl.formatMessage(
+                messages[`${joinMethods[method]}Description`],
+              )}
             />
-            <ReactTooltip place="bottom" className="mw6" effect="solid" />
+            <ReactTooltip place="bottom" className="mw6" />
           </div>
         ))}
       </div>
@@ -225,7 +227,7 @@ export function TeamInformation(props) {
               width={12}
               height={12}
               className="blue-grey v-mid pb1 ml2"
-              data-tip={intl.formatMessage(messages['publicDescription'])}
+              data-tooltip-content={intl.formatMessage(messages['publicDescription'])}
             />
           </div>
           <div className="pv2">
@@ -237,9 +239,9 @@ export function TeamInformation(props) {
               width={12}
               height={12}
               className="blue-grey v-mid pb1 ml2"
-              data-tip={intl.formatMessage(messages['privateDescription'])}
+              data-tooltip-content={intl.formatMessage(messages['privateDescription'])}
             />
-            <ReactTooltip place="bottom" className="mw6" effect="solid" />
+            <ReactTooltip place="bottom" className="mw6" />
           </div>
         </div>
       )}

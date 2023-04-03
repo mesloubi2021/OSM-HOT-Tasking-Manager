@@ -158,7 +158,7 @@ export function NotificationCard({
                         onClick={() => setMessageAsRead()}
                         style={{ width: '20px', height: '20px' }}
                         className={`dn dib-ns h1 w1 pr1 nr4 mv1 pv1 hover-red blue-light ml3`}
-                        data-tip={msg}
+                        data-tooltip-content={msg}
                       />
                     )}
                   </FormattedMessage>

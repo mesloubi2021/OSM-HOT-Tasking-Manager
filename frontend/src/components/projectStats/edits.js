@@ -19,11 +19,11 @@ export const EditsStats = ({ data }) => {
       <h3 className="barlow-condensed ttu f3">
         <FormattedMessage {...projectMessages.edits} />
         <InfoIcon
-          data-tip={intl.formatMessage(projectMessages.editsStats)}
+          data-tooltip-content={intl.formatMessage(projectMessages.editsStats)}
           className="blue-grey h1 w1 v-mid pb1 ml2"
         />
       </h3>
-      <ReactTooltip place="top" className="mw6" effect="solid" />
+      <ReactTooltip place="top" className="mw6" />
       <div className="db pb2 project-edit-stats">
         <StatsCard
           field={'changesets'}

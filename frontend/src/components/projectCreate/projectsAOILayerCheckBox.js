@@ -17,7 +17,7 @@ export const ProjectsAOILayerCheckBox = ({ isActive, setActive, disabled, isAoiL
           changeState={() => setActive(!isActive)}
           className="dib mr2 v-mid"
         />
-        <span className="di v-mid" data-tip>
+        <span className="di v-mid" data-tooltip-content>
           <FormattedMessage {...messages.showProjectsAOILayer} />
         </span>
         <span className="ml1">{isAoiLoading && <AnimatedLoadingIcon />}</span>

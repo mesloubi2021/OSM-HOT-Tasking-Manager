@@ -10,11 +10,11 @@ const ActionsNeededLabel = () => {
   const intl = useIntl();
   return (
     <>
-      <span data-tip={intl.formatMessage(messages.actionsNeededHelp)}>
+      <span data-tooltip-content={intl.formatMessage(messages.actionsNeededHelp)}>
         <FormattedMessage {...messages.actionsNeeded} />
         <InfoIcon className="blue-grey h1 w1 v-mid pb1 ml2" />
       </span>
-      <ReactTooltip place="bottom" className="mw6" effect="solid" />
+      <ReactTooltip place="bottom" className="mw6" />
     </>
   );
 };

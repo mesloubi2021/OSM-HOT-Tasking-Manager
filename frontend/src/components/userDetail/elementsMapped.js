@@ -161,7 +161,7 @@ export const ElementsMapped = ({ userStats, osmStats }) => {
             <QuestionCircleIcon
               className="pointer dib v-mid pl2 pb1 blue-light"
               height="1.25rem"
-              data-tip={msg}
+              data-tooltip-content={msg}
             />
           )}
         </FormattedMessage>

@@ -29,7 +29,7 @@ export function ProjectListItem({ project }: Object) {
           <FormattedMessage {...messages.percentMapped} values={{ n: project.percentMapped }}>
             {(msg) => (
               <>
-                <div className="w-25-ns w-third fl" data-tip={msg}>
+                <div className="w-25-ns w-third fl" data-tooltip-content={msg}>
                   <MappedIcon className="h1 w1 pr2" />
                   {project.percentMapped}%
                 </div>
@@ -40,7 +40,7 @@ export function ProjectListItem({ project }: Object) {
           <FormattedMessage {...messages.percentValidated} values={{ n: project.percentValidated }}>
             {(msg) => (
               <>
-                <div className="w-25-ns w-third fl" data-tip={msg}>
+                <div className="w-25-ns w-third fl" data-tooltip-content={msg}>
                   <ValidatedIcon className="h1 w1 pr2" />
                   {project.percentValidated}%
                 </div>
@@ -54,7 +54,7 @@ export function ProjectListItem({ project }: Object) {
           >
             {(msg) => (
               <>
-                <div className="w-20-ns w-third fl" data-tip={msg}>
+                <div className="w-20-ns w-third fl" data-tooltip-content={msg}>
                   <UserIcon className="h1 w1 pr2" />
                   {project.totalContributors}
                 </div>

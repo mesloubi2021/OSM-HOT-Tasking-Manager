@@ -81,7 +81,7 @@ export const ContributionTimeline = ({ userStats }) => {
             }
 
             return {
-              'data-tip': val,
+              'data-tooltip-content': val,
             };
           }}
         />

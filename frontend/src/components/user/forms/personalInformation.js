@@ -142,9 +142,9 @@ function _PersonalInformationForm({ userDetails, token, pushUserDetails }) {
                   <RequiredIndicator />
                   <InfoIcon
                     className="blue-grey h1 w1 v-mid pb1 ml2"
-                    data-tip={intl.formatMessage(messages.emailPrivacy)}
+                    data-tooltip-content={intl.formatMessage(messages.emailPrivacy)}
                   />
-                  <ReactTooltip place="bottom" className="mw6" effect="solid" />
+                  <ReactTooltip place="bottom" className="mw6" />
                 </label>
                 <Field name="emailAddress" type="email" component="input" autoComplete="email">
                   {({ input, meta }) => (
@@ -222,9 +222,9 @@ function _PersonalInformationForm({ userDetails, token, pushUserDetails }) {
                   <FormattedMessage {...messages.gender} />
                   <InfoIcon
                     className="blue-grey h1 w1 v-mid pb1 ml2"
-                    data-tip={intl.formatMessage(messages.genderPrivacy)}
+                    data-tooltip-content={intl.formatMessage(messages.genderPrivacy)}
                   />
-                  <ReactTooltip place="bottom" className="mw6" effect="solid" />
+                  <ReactTooltip place="bottom" className="mw6" />
                 </label>
                 {genderOptions.map((option) => (
                   <div className="pv2" key={option.value}>

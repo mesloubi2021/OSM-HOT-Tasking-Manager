@@ -48,7 +48,7 @@ export function DueDateBox({
               ? 'bg-red white'
               : 'bg-tan blue-grey'
           } ${intervalMili ? '' : 'mw4'}`}
-          data-tip={tooltipMsg}
+          data-tooltip-content={tooltipMsg}
           style={{ paddingTop: '0.375rem', paddingBottom: '0.375rem' }}
         >
           {!isTaskStatusPage ? (

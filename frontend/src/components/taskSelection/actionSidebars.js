@@ -274,7 +274,7 @@ export function CompletionTabForMapping({
           </label>
         </div>
       )}
-      <div className="cf mv2" data-tip>
+      <div className="cf mv2" data-tooltip-content>
         <Button
           className="bg-red white w-100 fl"
           onClick={() => submitTaskAsync.execute()}
@@ -501,7 +501,7 @@ export function CompletionTabForValidation({
           </label>
         </div>
       )}
-      <div className="cf mv3" data-tip>
+      <div className="cf mv3" data-tooltip-content>
         <Button
           className="bg-red white w-100 fl"
           onClick={() => submitTaskAsync.execute()}
