@@ -1,10 +1,11 @@
-import { render, screen, act, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { store } from '../../../store';
 
-import { ReduxIntlProviders } from '../../../utils/testWithIntl';
+import { createComponentWithMemoryRouter, ReduxIntlProviders } from '../../../utils/testWithIntl';
 import { QuestionsAndComments, PostProjectComment } from '../questionsAndComments';
+import userEvent from '@testing-library/user-event';
 
 describe('test if QuestionsAndComments component', () => {
   it('only renders text asking user to log in for non-logged in user', () => {
@@ -16,7 +17,8 @@ describe('test if QuestionsAndComments component', () => {
     expect(screen.getByText('Log in to be able to post comments.')).toBeInTheDocument();
   });
 
-  it('renders tabs for writing and previewing comments', () => {
+  it('renders tabs for writing and previewing comments', async () => {
+    const user = userEvent.setup();
     render(
       <ReduxIntlProviders store={store}>
         <PostProjectComment projectId={1} />
@@ -27,7 +29,7 @@ describe('test if QuestionsAndComments component', () => {
     expect(screen.getByRole('button', { name: /write/i })).toBeInTheDocument();
     expect(previewBtn).toBeInTheDocument();
     expect(screen.getByRole('textbox')).toBeInTheDocument();
-    fireEvent.click(previewBtn);
+    await user.click(previewBtn);
     expect(screen.queryByRole('textbox', { hidden: true })).toBeInTheDocument();
     expect(screen.getByText(/nothing to preview/i)).toBeInTheDocument();
   });
@@ -37,7 +39,7 @@ describe('test if QuestionsAndComments component', () => {
     act(() => {
       store.dispatch({ type: 'SET_TOKEN', token: '123456' });
     });
-    render(
+    const { user } = createComponentWithMemoryRouter(
       <ReduxIntlProviders store={store}>
         <QuestionsAndComments projectId={1} />
       </ReduxIntlProviders>,
@@ -76,7 +78,8 @@ describe('test if QuestionsAndComments component', () => {
     expect(button.textContent).toBe('Post');
 
     // type comment in textbox
-    fireEvent.change(textarea, { target: { value: 'Test comment' } });
+    await user.clear(textarea);
+    await user.type(textarea, 'Test comment');
     expect(textarea.textContent).toBe('Test comment');
     expect(
       screen.queryByTitle('Add "#managers" to notify the project managers about your comment.')
@@ -88,7 +91,7 @@ describe('test if QuestionsAndComments component', () => {
     ).toBe('#author');
 
     // click button to post comment
-    fireEvent.click(button);
+    await user.click(button);
     await waitFor(() => {
       expect(fetch).toHaveBeenCalledTimes(2);
     });

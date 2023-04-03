@@ -295,12 +295,11 @@ describe('Teams component', () => {
   });
 
   it('should navigate to project creation page on new button click', async () => {
-    const { router } = createComponentWithMemoryRouter(
+    const { user, router } = createComponentWithMemoryRouter(
       <IntlProviders>
         <Teams isReady teams={dummyTeams} viewAllQuery="/view/all" showAddButton />
       </IntlProviders>,
     );
-    const user = userEvent.setup();
     await user.click(screen.getByRole('button', { name: /new/i }));
     await waitFor(() => expect(router.state.location.pathname).toBe('/manage/teams/new/'));
   });
@@ -315,12 +314,11 @@ describe('Teams component', () => {
   });
 
   it('should navigate to manage projects page when view all is clicked ', async () => {
-    const { router } = createComponentWithMemoryRouter(
+    const { user, router } = createComponentWithMemoryRouter(
       <IntlProviders>
         <Teams isReady teams={[]} viewAllQuery="view/all" />
       </IntlProviders>,
     );
-    const user = userEvent.setup();
     await user.click(
       screen.getByRole('link', {
         name: /view all/i,

@@ -57,7 +57,7 @@ describe('Fallback component', () => {
       useNavigate: () => mockedUsedNavigate,
     }));
 
-    renderWithRouter(
+    const { user } = renderWithRouter(
       <IntlProviders>
         <FallbackComponent />
       </IntlProviders>,
@@ -66,7 +66,7 @@ describe('Fallback component', () => {
     const returnBtn = screen.getByRole('button', {
       name: messages.return.defaultMessage,
     });
-    await userEvent.click(returnBtn);
+    await user.click(returnBtn);
     waitFor(() => expect(mockedUsedNavigate).toHaveBeenCalledTimes(1));
   });
 });

@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
 import { ProjectsAOILayerCheckBox } from '../projectsAOILayerCheckBox';
-import { IntlProviders } from '../../../utils/testWithIntl';
+import { createComponentWithMemoryRouter, IntlProviders } from '../../../utils/testWithIntl';
 
 describe('ProjectsAOILayerCheckBox', () => {
   const testFn = jest.fn();

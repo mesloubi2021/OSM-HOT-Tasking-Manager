@@ -29,14 +29,14 @@ it('mapping type options show the road icon', () => {
 
 it('should set query for the clicked icon', async () => {
   const setMappingTypesQueryMock = jest.fn();
-  renderWithRouter(
+  const { user } = renderWithRouter(
     <ReduxIntlProviders>
       <QueryParamProvider adapter={ReactRouter6Adapter}>
         <MappingTypeFilterPicker setMappingTypesQuery={setMappingTypesQueryMock} />
       </QueryParamProvider>
     </ReduxIntlProviders>,
   );
-  await userEvent.click(
+  await user.click(
     screen.getByRole('checkbox', {
       name: /roads/i,
     }),
@@ -62,7 +62,7 @@ it('should highlight active selected map icon', async () => {
 
 it('should concatinate values with the present query', async () => {
   const setMappingTypesQueryMock = jest.fn();
-  renderWithRouter(
+  const { user } = renderWithRouter(
     <ReduxIntlProviders>
       <QueryParamProvider adapter={ReactRouter6Adapter}>
         <MappingTypeFilterPicker
@@ -73,7 +73,7 @@ it('should concatinate values with the present query', async () => {
     </ReduxIntlProviders>,
   );
 
-  await userEvent.click(
+  await user.click(
     screen.getByRole('checkbox', {
       name: /waterways/i,
     }),
@@ -86,7 +86,7 @@ it('should concatinate values with the present query', async () => {
 
 it('should deselect from the query value', async () => {
   const setMappingTypesQueryMock = jest.fn();
-  renderWithRouter(
+  const { user } = renderWithRouter(
     <ReduxIntlProviders>
       <QueryParamProvider adapter={ReactRouter6Adapter}>
         <MappingTypeFilterPicker
@@ -97,7 +97,7 @@ it('should deselect from the query value', async () => {
     </ReduxIntlProviders>,
   );
 
-  await userEvent.click(
+  await user.click(
     screen.getByRole('checkbox', {
       name: /roads/i,
     }),

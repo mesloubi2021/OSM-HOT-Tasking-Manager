@@ -1,18 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { render, screen, act, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { store } from '../../../store';
 import { DeleteNotificationsButton } from '../deleteNotificationsButton';
+import userEvent from '@testing-library/user-event';
 
 describe('DeleteNotificationsButton', () => {
   let selected = [];
@@ -51,6 +45,7 @@ describe('DeleteNotificationsButton', () => {
       selected = [1, 2, 3];
       store.dispatch({ type: 'SET_TOKEN', token: '123456' });
     });
+    const user = userEvent.setup();
     render(
       <Provider store={store}>
         <IntlProvider locale="en">
@@ -64,7 +59,7 @@ describe('DeleteNotificationsButton', () => {
     );
     expect(screen.getByText('Delete').className).toContain('bg-red white');
     expect(screen.getByText('Delete')).toBeEnabled();
-    fireEvent.click(screen.getByText('Delete'));
+    await user.click(screen.getByText('Delete'));
     await waitFor(() => expect(myMock).toHaveBeenCalledTimes(1));
     expect(selected).toEqual([]);
     waitForElementToBeRemoved(screen.queryByText('Delete'))

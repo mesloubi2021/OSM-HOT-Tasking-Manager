@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, fireEvent } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
@@ -75,8 +75,8 @@ describe('TaskCard', () => {
     expect(screen.queryByText('Resume task')).not.toBeInTheDocument();
   });
 
-  it('on LOCKED_FOR_VALIDATION state', () => {
-    const { container } = renderWithRouter(
+  it('on LOCKED_FOR_VALIDATION state', async () => {
+    const { user, container } = renderWithRouter(
       <ReduxIntlProviders>
         <TaskCard
           taskId={987}
@@ -92,13 +92,13 @@ describe('TaskCard', () => {
     expect(screen.getByText('Locked for validation by user_1')).toBeInTheDocument();
     expect(screen.queryByText('Resume task')).not.toBeInTheDocument();
     // hovering on the card should show the resume task button
-    fireEvent.mouseOver(screen.getByText('Locked for validation by user_1'));
+    await user.hover(screen.getByText('Locked for validation by user_1'));
     expect(screen.getByText('Resume task')).toBeInTheDocument();
     expect(container.querySelectorAll('a')[1].href).toContain('/projects/4321/tasks?search=987');
   });
 
-  it('on INVALIDATED state', () => {
-    renderWithRouter(
+  it('on INVALIDATED state', async () => {
+    const { user } = renderWithRouter(
       <ReduxIntlProviders>
         <TaskCard
           taskId={987}
@@ -112,12 +112,12 @@ describe('TaskCard', () => {
     expect(screen.getByText('More mapping needed')).toBeInTheDocument();
     expect(screen.queryByText('Resume task')).not.toBeInTheDocument();
     // hovering on the card should show the resume task button
-    fireEvent.mouseOver(screen.getByText('More mapping needed'));
+    await user.hover(screen.getByText('More mapping needed'));
     expect(screen.getByText('Resume task')).toBeInTheDocument();
   });
 
-  it('on READY state', () => {
-    const { container } = renderWithRouter(
+  it('on READY state', async () => {
+    const { user, container } = renderWithRouter(
       <ReduxIntlProviders>
         <TaskCard
           taskId={543}
@@ -134,14 +134,14 @@ describe('TaskCard', () => {
     expect(screen.getByText('Available for mapping')).toBeInTheDocument();
     expect(screen.queryByText('Resume task')).not.toBeInTheDocument();
     // hover on the card
-    fireEvent.mouseOver(screen.getByText('Available for mapping'));
+    await user.hover(screen.getByText('Available for mapping'));
     expect(screen.getByText('Resume task')).toBeInTheDocument();
     expect(screen.getByText('Resume task').className).toBe(
       'dn dib-l link pv2 ph3 mh3 mv1 bg-red white f7 fr',
     );
     expect(container.querySelectorAll('a')[1].href).toContain('/projects/9983/tasks?search=543');
     // unhover
-    fireEvent.mouseOut(screen.getByText('Available for mapping'));
+    await user.unhover(screen.getByText('Available for mapping'));
     expect(screen.queryByText('Resume task')).not.toBeInTheDocument();
   });
 });

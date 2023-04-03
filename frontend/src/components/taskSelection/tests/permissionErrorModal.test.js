@@ -143,12 +143,12 @@ describe('UserPermissionErrorContent', () => {
         },
       ],
     };
-    const { router } = createComponentWithMemoryRouter(
+    const { user, router } = createComponentWithMemoryRouter(
       <IntlProviders>
         <UserPermissionErrorContent project={project} userLevel="BEGINNER" />
       </IntlProviders>,
     );
-    await userEvent.click(
+    await user.click(
       screen.getByRole('button', {
         name: /select another project/i,
       }),

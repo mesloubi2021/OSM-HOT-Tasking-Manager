@@ -7,7 +7,7 @@ import { OrderBySelector } from '../orderBy';
 
 test('should select option on click', async () => {
   const setQueryMock = jest.fn();
-  renderWithRouter(
+  const { user } = renderWithRouter(
     <IntlProviders>
       <OrderBySelector
         allQueryParams={{
@@ -18,12 +18,12 @@ test('should select option on click', async () => {
       />
     </IntlProviders>,
   );
-  await userEvent.click(
+  await user.click(
     screen.getByRole('button', {
       name: /sort by/i,
     }),
   );
-  await userEvent.click(screen.getByText(/urgent projects/i));
+  await user.click(screen.getByText(/urgent projects/i));
   expect(setQueryMock).toHaveBeenCalledWith(
     expect.objectContaining({
       orderBy: 'priority',

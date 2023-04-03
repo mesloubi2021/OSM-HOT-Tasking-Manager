@@ -57,7 +57,7 @@ describe('Project Search Results', () => {
 
   it('should display error and provide actionable to retry', async () => {
     const retryFn = jest.fn();
-    renderWithRouter(
+    const { user } = renderWithRouter(
       <ReduxIntlProviders>
         <ProjectSearchResults state={{ isError: true, projects: [] }} retryFn={retryFn} />
       </ReduxIntlProviders>,
@@ -66,7 +66,6 @@ describe('Project Search Results', () => {
     expect(screen.getByText('Error loading the Projects for Explore Projects')).toBeInTheDocument();
     const retryBtn = screen.getByRole('button', { name: /retry/i });
     expect(retryBtn).toBeInTheDocument();
-    const user = userEvent.setup();
     await user.click(retryBtn);
     expect(retryFn).toHaveBeenCalled();
   });
