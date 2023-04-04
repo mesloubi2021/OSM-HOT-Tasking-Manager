@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Popup from 'reactjs-popup';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';
@@ -274,7 +274,7 @@ export function CompletionTabForMapping({
           </label>
         </div>
       )}
-      <div className="cf mv2" data-tooltip-content>
+      <div className="cf mv2" data-tooltip-id="unsavedChangesTooltipEditing">
         <Button
           className="bg-red white w-100 fl"
           onClick={() => submitTaskAsync.execute()}
@@ -289,9 +289,9 @@ export function CompletionTabForMapping({
         </Button>
       </div>
       {disabled && (
-        <ReactTooltip place="top">
+        <Tooltip place="top" id="unsavedChangesTooltipEditing">
           <FormattedMessage {...messages.unsavedChangesTooltip} />
-        </ReactTooltip>
+        </Tooltip>
       )}
       <div className="cf pb1">
         <Button
@@ -501,7 +501,7 @@ export function CompletionTabForValidation({
           </label>
         </div>
       )}
-      <div className="cf mv3" data-tooltip-content>
+      <div className="cf mv3" data-tooltip-id="unsavedChangesTooltipValidation">
         <Button
           className="bg-red white w-100 fl"
           onClick={() => submitTaskAsync.execute()}
@@ -512,9 +512,9 @@ export function CompletionTabForValidation({
         </Button>
       </div>
       {disabled && (
-        <ReactTooltip place="top">
+        <Tooltip place="top" id="unsavedChangesTooltipValidation">
           <FormattedMessage {...messages.unsavedChangesTooltip} />
-        </ReactTooltip>
+        </Tooltip>
       )}
       <div className="cf">
         <Button

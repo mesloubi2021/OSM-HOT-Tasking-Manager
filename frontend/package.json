@@ -33,8 +33,8 @@
     "final-form": "^4.20.9",
     "fromentries": "^1.3.2",
     "humanize-duration": "^3.28.0",
-    "maplibre-gl": "^1.15.3",
     "mapbox-gl-draw-rectangle-mode": "^1.0.4",
+    "maplibre-gl": "^1.15.3",
     "marked": "^4.2.12",
     "osmtogeojson": "^3.0.0-beta.5",
     "prop-types": "^15.8.1",
@@ -116,7 +116,7 @@
     "webpack-bundle-analyzer": "^4.8.0"
   },
   "resolutions": {
-    "dom-accessibility-api": "0.5.14"
+    "dom-accessibility-api": "0.5.10"
   },
   "overrides": {
     "dom-accessibility-api": "0.5.14"

@@ -24,16 +24,13 @@ export function ShareButton({ projectId }: Object) {
 
   return (
     <>
-      <div
-        className="flex items-center"
-        data-tooltip-id="shareProject"
-      >
+      <div className="flex items-center" data-tooltip-id="shareProject">
         <ShareIcon className="pr2 blue-grey" />
         <span className="dn db-ns">
           <FormattedMessage {...messages.share} />
         </span>
       </div>
-      <Tooltip delayHide={500} clickable={true} id="shareProject" place={"top"}>
+      <Tooltip delayHide={500} clickable={true} id="shareProject" place={'top'}>
         <FormattedMessage
           {...messages.shareMessage}
           values={{ id: projectId, site: `${ORG_CODE} Tasking Manager` }}
