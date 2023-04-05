@@ -214,7 +214,6 @@ export function TaskSelection({ project, type, loading }: Object) {
       setMapInit(true);
     }
   }, [
-    lockedTasks,
     dispatch,
     activities,
     user.username,
