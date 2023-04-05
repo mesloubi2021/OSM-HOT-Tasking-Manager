@@ -18,7 +18,7 @@ import { setupFaultyHandlers } from '../../../network/tests/server';
 import messages from '../messages';
 import { store } from '../../../store';
 
-describe('Appeareance of unsaved map changes to be dealt with while mapping', () => {
+describe('Appearance of unsaved map changes to be dealt with while mapping', () => {
   test('when splitting a task', async () => {
     const { user } = renderWithRouter(
       <ReduxIntlProviders>
@@ -44,11 +44,15 @@ describe('Appeareance of unsaved map changes to be dealt with while mapping', ()
   });
 
   test('when submitting a task', async () => {
-    renderWithRouter(
+    const { user } = renderWithRouter(
       <ReduxIntlProviders>
         <CompletionTabForMapping disabled />
       </ReduxIntlProviders>,
     );
+    const button = screen.getByRole('button', { name: 'Submit task' });
+    expect(button).toBeDisabled();
+    await user.hover(button);
+    await waitFor(() => expect(screen.getByRole('tooltip')).toBeInTheDocument());
     expect(screen.getByText(messages.unsavedChangesTooltip.defaultMessage)).toBeInTheDocument();
   });
 
@@ -164,7 +168,7 @@ describe('Miscellaneous modals and prompts', () => {
   });
 });
 
-describe('Appeareance of unsaved map changes to be dealt with while validating', () => {
+describe('Appearance of unsaved map changes to be dealt with while validating', () => {
   test('when stopping validation session', async () => {
     const { user } = renderWithRouter(
       <ReduxIntlProviders>
@@ -190,11 +194,15 @@ describe('Appeareance of unsaved map changes to be dealt with while validating',
   });
 
   test('when submitting a task', async () => {
-    renderWithRouter(
+    const { user } = renderWithRouter(
       <ReduxIntlProviders>
         <CompletionTabForValidation disabled validationStatus={{}} tasksIds={[]} />
       </ReduxIntlProviders>,
     );
+    const button = screen.getByRole('button', { name: 'Submit task' });
+    expect(button).toBeDisabled();
+    await user.hover(button);
+    await waitFor(() => expect(screen.getByRole('tooltip')).toBeInTheDocument());
     expect(screen.getByText(messages.unsavedChangesTooltip.defaultMessage)).toBeInTheDocument();
   });
 });

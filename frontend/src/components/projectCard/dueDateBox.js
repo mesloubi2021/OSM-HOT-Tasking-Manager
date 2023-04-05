@@ -48,7 +48,7 @@ export function DueDateBox({
               ? 'bg-red white'
               : 'bg-tan blue-grey'
           } ${intervalMili ? '' : 'mw4'}`}
-          data-tooltip-content={tooltipMsg}
+          data-tooltip-id="dueDateBoxTip"
           style={{ paddingTop: '0.375rem', paddingBottom: '0.375rem' }}
         >
           {!isTaskStatusPage ? (
@@ -66,7 +66,7 @@ export function DueDateBox({
             />
           </span>
         </span>
-        {tooltipMsg && <ReactTooltip place="bottom" />}
+        {tooltipMsg && <ReactTooltip place="bottom" id="dueDateBoxTip" content={tooltipMsg} />}
       </>
     );
   } else {
