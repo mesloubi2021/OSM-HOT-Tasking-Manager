@@ -78,7 +78,6 @@ export default function RapidEditor({
       RapiDContext.embed(true)
         .assetPath('/static/rapid/')
         .locale(locale)
-        .setsDocumentTitle(false)
         .containerNode(document.getElementById('rapid-container'));
       // init the ui or restart if it was loaded previously
       if (RapiDContext.ui() !== undefined) {
@@ -87,9 +86,9 @@ export default function RapidEditor({
       } else {
         RapiDContext.init();
       }
-      if (gpxUrl) {
-        RapiDContext.layers().layer('data').url(gpxUrl, '.gpx');
-      }
+      // if (gpxUrl) {
+      //   RapiDContext.layers().layer('data').url(gpxUrl, '.gpx');
+      // }
 
       RapiDContext.rapidContext().showPowerUser = powerUser;
 
